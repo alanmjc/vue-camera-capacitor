@@ -1,0 +1,28 @@
+{
+  "name": "vue-camera-capacitor",
+  "version": "1.0.0",
+  "description": "Componente de Vue.js que permite a un usuario tomar fotos y manejar archivos de imagen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanmjc/vue-camera-capacitor.git"
+  },
+  "keywords": [
+    "vue",
+    "capacitor",
+    "camera"
+  ],
+  "author": "Alan Juárez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alanmjc/vue-camera-capacitor/issues"
+  },
+  "homepage": "https://github.com/alanmjc/vue-camera-capacitor#readme",
+  "dependencies": {
+    "@capacitor/camera": "^4.1.4",
+    "@capacitor/filesystem": "^4.1.4"
+  }
+}
