@@ -10,9 +10,10 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import File from './File';
 import Imagen from './Image';
 import { Directory } from '@capacitor/filesystem';
+import { Capacitor } from '@capacitor/core';
 
 export default {
-  emits: ['update:objeto', 'actualizado'],
+  emits: ['imagenObtenida'],
   props: {
     /**
      * cámara|galería
@@ -21,15 +22,9 @@ export default {
       type: String,
       default: 'cámara'
     },
-    objeto: {
-      type: Object,
-      default: () => ({
-        archivos: []
-      })
-    },
     crearThumbnail: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   data() {
@@ -57,11 +52,10 @@ export default {
         return;
       }
 
-      const objeto = JSON.parse(JSON.stringify(this.objeto));
       file.thumbWebPath = null;
       file.thumbPath = null;
 
-      if (this.platform !== 'web' && this.crearThumbnail === true) {
+      if (Capacitor.getPlatform() !== 'web' && this.crearThumbnail === true) {
         const filename = File.getFileName(file.path);
 
         await Imagen.crearThumbnailYGuardar({
@@ -74,9 +68,7 @@ export default {
         file.thumbWebPath = `${File.getDir(file.webPath)}thumb-${filename}`;
       }
 
-      objeto.archivos.push(file);
-      this.$emit('update:objeto', objeto);
-      this.$emit('actualizado', file);
+      this.$emit('imagenObtenida', file);
     }
   }
 };
